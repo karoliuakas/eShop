@@ -1,0 +1,33 @@
+ #nuotrauka {
+     border-radius: 20%;
+ }
+ 
+ #first {
+     margin-top: 50px;
+     padding-top: 50px;
+ }
+ 
+ #first {
+     color: white;
+ }
+ 
+ #firstL {
+     border-style: solid;
+     border-color: rgba(185, 4, 95, 0.308);
+     border-radius: 3%;
+     border-width: 5px;
+ }
+ 
+ #firstL p {
+     margin-top: 10px;
+     font-size: 16px;
+     text-align: center;
+ }
+ 
+ #ProgramuSarasas {
+     -webkit-column-count: 3;
+     -moz-column-count: 3;
+     column-count: 3;
+     font-weight: bold;
+     color: rgb(255, 153, 0);
+ }
