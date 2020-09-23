@@ -8,6 +8,9 @@ function HomeScreen(props) {
             data.products.map(product =>
                 <li>
                     <div className="product">
+                        <div>
+                            
+                        </div>
                         <Link to={'/product/' + product._id}>
                             <img className="product-image" src={product.image} alt="Medis" />
                         </Link>
