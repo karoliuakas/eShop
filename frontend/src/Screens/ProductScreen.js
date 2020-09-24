@@ -41,11 +41,10 @@ function ProductScreen(props) {
                         Būsena: {product.status}
                     </li>
                     <li>
-                        Kiekis: <select>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                        Dydis: <select>
+                            <option>Mažas</option>
+                            <option>Vidutinis</option>
+                            <option>Didelis</option>
                         </select>
                     </li>
                     <li>
