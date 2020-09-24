@@ -4,7 +4,7 @@ export default {
         _id:'456',
         name: 'Saldainių medis su miglėmis',
         category: 'medžiai',
-        image: '/img/saldainiu-medsis.jpg',
+        image: '/img/saldainiu-med.jpg',
         price: 30,
         type: 'Saildainių medis',
         rating: 4.1,
