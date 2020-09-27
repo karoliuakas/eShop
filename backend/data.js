@@ -1,8 +1,8 @@
 export default {
     products: [
         {
-            _id: '456',
-            name: 'Saldainių medis su miglėmis',
+            _id: '1',
+            name: 'Saldainių medis su miglėmiws',
             category: 'medžiai',
             image: '/img/saldainiu-med.jpg',
             price: 30,
@@ -11,7 +11,7 @@ export default {
             numberReviews: 3
         },
         {
-            _id: '123',
+            _id: '2',
             name: 'Saldainių medis su kregždutėmis',
             category: 'medžiai',
             image: '/img/saldainiu-medis.png',
@@ -21,7 +21,7 @@ export default {
             numberReviews: 3
         },
         {
-            _id: '13',
+            _id: '3',
             name: 'Saldainių puokštė',
             category: 'puokštės',
             image: '/img/abv.jpg',
@@ -31,7 +31,7 @@ export default {
             numberReviews: 3
         },
         {
-            _id: '123',
+            _id: '4',
             name: 'Saldainių medis su kregždutėmis',
             category: 'medžiai',
             image: '/img/saldainiu-medis.png',
@@ -41,7 +41,7 @@ export default {
             numberReviews: 3
         },
         {
-            _id: '123',
+            _id: '5',
             name: 'Saldainių medis su kregždutėmis',
             category: 'medžiai',
             image: '/img/saldainiu-medis.png',
@@ -51,7 +51,7 @@ export default {
             numberReviews: 3
         },
         {
-            _id: '123',
+            _id: '6',
             name: 'Saldainių medis su kregždutėmis',
             category: 'medžiai',
             image: '/img/saldainiu-medis.png',
@@ -61,7 +61,7 @@ export default {
             numberReviews: 3
         },
         {
-            _id: '999',
+            _id: '7',
             name: 'Saldainių medis su rafaelo',
             category: 'medžiai',
             image: '/img/saldainiu-medis.png',
