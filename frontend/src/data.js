@@ -2,7 +2,7 @@ export default {
     products: [
         {
             _id: '1',
-            name: 'Saldainių medis su miglėmis',
+            name: 'Saldainių medis su miglėmiwsssssss',
             category: 'medžiai',
             image: '/img/saldainiu-med.jpg',
             price: 30,
