@@ -1,22 +1,28 @@
 import express from 'express';
-import data from './data';
+import mongoose from 'mongoose';
+import userRouter from './routers/userRouter.js';
+import productRouter from './routers/productRouter.js';
 
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/newshop',{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+});
 const app = express();
 
-app.get("/api/products/:id", (req, res) => {
-    const productId = req.params.id;
-    const product = data.products.find(x => x._id === productId);
-    if (product){
-         res.send(product);
-    }
-    else
-    {
-        res.status(404).send({ msg: "Prekė nerasta" })
-    }
-        
+app.use('/api/users', userRouter);
+
+app.use('/api/products', productRouter);
+
+
+app.use((err, req, res, next) => {
+    res.status(500).send({message: err.message});
 });
-app.get("/api/products", (req, res) => {
-    res.send(data.products);
+app.get('/', (req, res)=>{
+    res.send('Serveris užsikūrė');
 });
 
-app.listen(5000, () => { console.log("Serveris pasileido http://localhost:5000") })
+const port = process.env.PORT || 5000;
+app.listen(port, () =>{
+    console.log(`serveris paleistas -> localhost:${port}`);
+});

@@ -1,78 +1,115 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { detailsProduct } from '../actions/productActions';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
+import Rating from '../components/Rating';
+import Fade from "react-reveal/Fade";
 
-
-function ProductScreen(props) {
-    // const product = data.products.find(x => x._id === props.match.params.id);
-    const productDetails = useSelector(state => state.productDetails);
-    const { product, loading, error } = productDetails;
+export default function ProductScreen(props) {
     const dispatch = useDispatch();
+    const productId = props.match.params.id;
+    const [qty, setQty] = useState(1);
+    const productDetails = useSelector((state) => state.productDetails);
+    const { loading, error, product } = productDetails;
 
     useEffect(() => {
-        dispatch(detailsProduct(props.match.params.id));
-        return () => {
+        dispatch(detailsProduct(productId));
+    }, [dispatch, productId]);
+    const addToCartHandler = () =>{
+        props.history.push(`/cart/${productId}?qty=${qty}`);
+    };
+    return (
+        <div>
+            {loading ? (<LoadingBox></LoadingBox>) :
+                error ? (<MessageBox variant="danger">{error}</MessageBox>) :
+                    (<Fade>
+                    <div>
+                        <Link to="/">Grįžti į pradinį</Link>
+                        <div className="row top">
+                            <div className="col-2">
+                                <img className="large" src={product.image} alt={product.name}></img>
 
-        };
-    }, [])
-    return <div>
-        <div className="back-to-result">
-            <Link to="/"> Grįžti</Link>
+                            </div>
+                            <div className="col-1">
+                                <ul>
+                                    <li>
+                                        <h1>{product.name}</h1>
+                                    </li>
+                                    <li>
+                                        <Rating rating={product.rating}
+                                            numReviews={product.numReviews}></Rating>
+                                    </li>
+                                    <li>
+                                        Kaina: {product.price} €‎
+                        </li>
+                                    <li>
+                                        Aprašymas:<p>
+                                            {product.description}
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="col-3">
+                                <div className="card card-body">
+                                    <ul>
+                                        <li>
+                                            <div className="row">
+                                                <div>
+                                                    Kaina:
+                                        </div>
+                                                <div className="price">
+                                                    {product.price}€‎
+                                        </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className="row">
+                                                <div>
+                                                    Būsena:
+                                        </div>
+                                                <div className="price">
+                                                    {
+                                                        product.countInStock > 0 ? (<span className="success">Prekė yra</span>) :
+                                                            (<span className="danger"> Prekės nėra</span>)
+                                                    }
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {
+                                            product.countInStock > 0 &&
+                                            (
+                                                <>
+                                                    <li>
+                                                        <div className="row">
+                                                            <div> Kiekis </div>
+                                                            <select value={qty} onChange={e => setQty(e.target.value)}>
+                                                                {
+                                                                    [...Array(product.countInStock).keys()].map((x) => (
+                                                                        <option key={x+1} value={x + 1}>
+                                                                            {x + 1}
+                                                                        </option>
+                                                                    ))
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <button onClick={addToCartHandler} className="primary block">Pridėti į krepšelį</button>
+                                                    </li>
+                                                </>
+                                            )
+                                        }
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div></Fade>)
+            }
         </div>
-        {loading ? ( <div> Kraunasi...</div>) :
-            error ? (<div>{error}</div>) :
-                (
-                    <div className="details">
-                        <div className="details-image">
-                            <img src={product.image} alt="product"></img>
-                        </div>
-                        <div className="details-info">
-                            <ul>
-                                <li>
-                                    <h4>{product.name}</h4>
-                                </li>
-                                <li>
-                                    {product.rating} Žvaigždės ({product.numberReviews} Atsiliepimai)
-                    </li>
-                                <li>
-                                    <b>{product.price}</b>
-                                </li>
-                                <li>
-                                    Aprašymas:
-                        <div>
-                                        {product.description}
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="details-action">
-                            <ul>
-                                <li>
-                                    Kaina: <b>{product.price}€</b>
-                                </li>
-                                <li>
-                                    Būsena: {product.status}
-                                </li>
-                                <li>
-                                    Dydis: <select>
-                                        <option>Mažas</option>
-                                        <option>Vidutinis</option>
-                                        <option>Didelis</option>
-                                    </select>
-                                </li>
-                                <li>
-                                    <button className="button">
-                                        Pridėti į krepšelį
-                        </button>
-                                </li>
-                            </ul>
 
-                        </div>
-                    </div>
-                )}
-
-
-    </div>
+    );
 }
-export default ProductScreen;

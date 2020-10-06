@@ -1,29 +1,25 @@
 {
-  "name": "shop",
+  "name": "newshop",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch backend --exec babel-node backend/server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/karoliuakas/eShop.git"
+    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/karoliuakas/eShop/issues"
-  },
-  "homepage": "https://github.com/karoliuakas/eShop#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "mongoose": "^5.10.7",
+    "react-modal": "^3.11.2",
+    "react-reveal": "^1.2.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.11.6",
-    "@babel/core": "^7.11.6",
-    "@babel/node": "^7.10.5",
-    "@babel/preset-env": "^7.11.5",
+    "eslint": "^7.10.0",
+    "eslint-plugin-react": "^7.21.3",
     "nodemon": "^2.0.4"
   }
 }

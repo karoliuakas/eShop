@@ -1,6 +1,6 @@
 import { PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS } from "../constants/productConstants";
 
-function productListReducer(state = { products: [] }, action) {
+function productListReducer(state = { loading:true, products: [] }, action) {
 
     switch (action.type) {
         case PRODUCT_LIST_REQUEST:
@@ -13,9 +13,7 @@ function productListReducer(state = { products: [] }, action) {
             return state;
     }
 }
-
-
-function productDetailsReducer(state = { product: {} }, action) {
+function productDetailsReducer(state = { product: {}, loading: true }, action) {
 
     switch (action.type) {
         case PRODUCT_DETAILS_REQUEST:
@@ -28,5 +26,4 @@ function productDetailsReducer(state = { product: {} }, action) {
             return state;
     }
 }
-
 export {productListReducer, productDetailsReducer};

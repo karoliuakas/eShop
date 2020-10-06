@@ -1,127 +1,182 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
     <head>
-        <link rel="stylesheet" type="text/css" href="css/pagrindinis.css">
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+            />
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="./css/index.css">
-        <link rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-            crossorigin="anonymous">
-        <title>ProjectX</title>
-        <link rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link href='https://fonts.googleapis.com/css?family=Montserrat'
-            rel='stylesheet'>
-
+        <title>Saldainių Dovana</title>
     </head>
-
     <body>
-        <nav class="navbar navbar-expand-lg fixed-top">
-            <div class="container">
-
-                <a class="navbar-brand" href="index.php" id="brand">KRL.LT</a>
-                <button class="navbar-toggler navbar-light" type="button"
-                    data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <div class="collapse navbar-collapse"
-                    id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link"href="index.php">Apie mane</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="portfolio.php">Portfolio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="discord.php">DISCORD</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="travel.php">Kelionės</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contacts.php">Kontaktai</a>
-                        </li>
-
-                    </ul>
+        <div class="grid-container">
+            <header class="row">
+                <div>
+                    <a class="brand" href="/">KRL.LT</a>
                 </div>
-
-
-            </div>
-
-            <div class="LoginRegister">
-                <a class="btn btn-primary" href="./login.php" role="button">Login</a>
-                <a class="btn btn-primary" href="./register.php" role="button">Register</a>
-            </div>
-
-        </nav>
-        <main>
-            <ul>
-                <li>Product1</li>
-                <li>Product2</li>
-                <li>Product3</li>
-                <li>Product4</li>
-                <li>Product5</li>
-            </ul>
-        </main>
-        <div class="container" id="first">
-            <div class="row">
-                <div class="col-lg-8" id="firstL">
-                    <p>
-                        Sveiki, esu KAROLIS ŽILEVIČIUS ir šiuo metu studijuoju
-                        Vilniaus kolegijoje programų sistemas. Esu jaunesnysis
-                        programuotojas / IT specialistas besidomintis viskuo kas
-                        susiję su kompiuteriais tiek iš techninės, tiek iš
-                        programinės pusės. Nuo pat vaikystės
-                        pradėjau domėtis kompiuteriu, jo programomis ir
-                        žaidimais. Todėl šiuo metu didžiąją laiko dalį skiriu
-                        šiom veiklom. Laisvalaikiu žaidžiu krepšinį mėgėjų
-                        lygoje ir šoku liaudiškus šokius. <br> <br> <b><u>Įgyta
-                                patirtis
-                                ir žinios mokantis:</u></b>
-                    </p>
-                    <ul id="ProgramuSarasas">
-                        <li>C#</li>
-                        <li>C++</li>
-                        <li>Ruby</li>
-                        <li>MySQL</li>
-                        <li>HTML</li>
-                        <li>CSS</li>
-                        <li>JS</li>
-                        <li>PHP</li>
-                        <li>AutoCad</li>
-                        <li>PhotoShop</li>
-                        <li>CorelDraw</li>
-                        <li>Premiere</li>
-
-                    </ul>
+                <div>
+                    <a href="/cart">Cart</a>
+                    <a href="/signin">Sign In</a>
                 </div>
+            </header>
+            <main>
+                <div class="row center">
+                    <div class="card">
+                        <a href="product/">
+                            <img class="medium" src="./images/p1.jpg"
+                                alt="product" />
+                        </a>
+                        <div class="card-body">
+                            <a href="product.html">
+                                <h2>Saldainių medis su miglėmis</h2>
+                            </a>
+                            <div class="rating">
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                            </div>
+                            <div class="price">
+                                120 €‎
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="col">
-                    <img src="img/transparentB&W.png" class="img-fluid
-                        float-right" alt="Responsive image" id="nuotrauka">
+                    <div class="card">
+                        <a href="product/">
+                            <img class="medium" src="./images/p1.jpg"
+                                alt="product" />
+                        </a>
+                        <div class="card-body">
+                            <a href="product.html">
+                                <h2>Saldainių medis su miglėmis</h2>
+                            </a>
+                            <div class="rating">
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                            </div>
+                            <div class="price">
+                                120 €‎
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <a href="product/">
+                            <img class="medium" src="./images/p1.jpg"
+                                alt="product" />
+                        </a>
+                        <div class="card-body">
+                            <a href="product.html">
+                                <h2>Saldainių medis su miglėmis</h2>
+                            </a>
+                            <div class="rating">
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                            </div>
+                            <div class="price">
+                                120 €‎
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <a href="product/">
+                            <img class="medium" src="./images/p1.jpg"
+                                alt="product" />
+                        </a>
+                        <div class="card-body">
+                            <a href="product.html">
+                                <h2>Saldainių medis su miglėmis</h2>
+                            </a>
+                            <div class="rating">
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                            </div>
+                            <div class="price">
+                                120 €‎
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <a href="product/">
+                            <img class="medium" src="./images/p1.jpg"
+                                alt="product" />
+                        </a>
+                        <div class="card-body">
+                            <a href="product.html">
+                                <h2>Saldainių medis su miglėmis</h2>
+                            </a>
+                            <div class="rating">
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                            </div>
+                            <div class="price">
+                                120 €‎
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <a href="product/">
+                            <img class="medium" src="./images/p1.jpg"
+                                alt="product" />
+                        </a>
+                        <div class="card-body">
+                            <a href="product.html">
+                                <h2>Saldainių medis su miglėmis</h2>
+                            </a>
+                            <div class="rating">
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                            </div>
+                            <div class="price">
+                                120 €‎
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a href="product/">
+                            <img class="medium" src="./images/p1.jpg"
+                                alt="product" />
+                        </a>
+                        <div class="card-body">
+                            <a href="product.html">
+                                <h2>Saldainių medis su miglėmis</h2>
+                            </a>
+                            <div class="rating">
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span><i class="fa fa-star"></i></span>
+                            </div>
+                            <div class="price">
+                                120 €‎
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-            </div>
-
-            <footer>
-                <p>Karolis Žilevičius<br>
-                    <p>© 2020</p>
-                </footer>
-                <script
-                    src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                <script
-                    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-            </body>
-
-        </html>
+            </main>
+            <footer class="row center">All right reserved</footer>
+        </div>
+    </body>
+</html>

@@ -1,44 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react'
+import Product from '../components/Product';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
+import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productActions';
+import Fade from "react-reveal/Fade";
 
-
-function HomeScreen(props) {
-    const productList = useSelector((state) => state.productList);
-    const { products, loading, error } = productList;
+export default function HomeScreen() {
     const dispatch = useDispatch();
+   const productList = useSelector( state => state.productList);
+const {loading, error, products} = productList;
+
     useEffect(() => {
+     dispatch(listProducts());
+    }, [dispatch])
 
-        dispatch(listProducts());
-        return () => {
+    return (
+    <Fade>
+        <div>
+            {loading ? (<LoadingBox></LoadingBox>) :
+                error ? (<MessageBox variant="danger">{error}</MessageBox>) :
+                   (
+                    
+                   <div className="row center">
+                       
+                        {
+                            products.map((product) =>
+                                (
+                                    <Product key={product._id} product={product}></Product>
+                                ))
+                        }  
+                    </div>
+                 
+                    )
+            }
+        </div>
 
-        };
-    }, [])
-
-    return loading ? <div>Kraunasi..</div> :
-        error ? <div>{error}</div> :
-            <ul className="products">
-                {
-                    products.map((product) =>
-                        <li key={product._id}>
-                            <div className="product">
-                                <div className="product-image">
-                                    <Link to={'/product/' + product._id}>
-                                        <img src={product.image} alt="Medis" />
-                                    </Link>
-                                </div>
-                                <div className="product-name">
-                                    <Link to={'/product/' + product._id}>{product.name}</Link>
-                                </div>
-                                <div className="product-type">{product.type}</div>
-                                <div className="product-price">{product.price}€</div>
-                                <div className="product-rating">{product.rating} Žvaigždutės({product.numberReviews}
-            atsiliepimas-(i)</div>
-                            </div>
-                        </li>)
-                }
-            </ul>
+   </Fade>  );
 }
-export default HomeScreen;

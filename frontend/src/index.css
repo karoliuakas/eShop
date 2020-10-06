@@ -1,231 +1,204 @@
 html {
-  font-size: 62.5%;
-  /*16px*/
+  font-size: 62.5%; /* 16px x 62.5 = 10px = 1rem */
   box-sizing: border-box;
-  background-color: rgb(233, 222, 222);
+  background-color: rgb(255, 255, 255);
 }
-
 body {
-  font: 1.6rem calibri;
-  height: 100vh;
   margin: 0;
-  /*background: linear-gradient(90deg, #3c033e 0%, #c93051 100%);*/
+  height: 100vh;
+  font-size: 1.6rem;
+  font-family: Helvetica, Arial, sans-serif; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
-#root {
+#root{
   height: 100%;
 }
 
+/* Layout */
 .grid-container {
   display: grid;
-  grid-template-areas: "header" "main" "footer";
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
   grid-template-columns: 1fr;
   grid-template-rows: 5rem 1fr 5rem;
   height: 100%;
 }
-
-.header {
+header {
   grid-area: header;
   background-color: rgb(182, 30, 106);
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
 }
-
-
-.header-links a:hover {
-  color: rgb(197, 245, 22);
-}
-
-.brand a {
-  color: white;
-  font-size: 3rem;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.header-links a {
-  color: white;
-  text-decoration: none;
+main {
+  grid-area: main;
   padding: 1rem;
 }
-
-.main {
-  grid-area: main;
-  
-}
-
-.footer {
+footer {
   grid-area: footer;
   background-color: rgb(221, 197, 197);
   color: rgb(129, 27, 27);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+/* Common */
+h1 {
+  font-size: 1.8rem;
+  padding: 1rem 0;
+}
+h2 {
+  font-size: 1.6rem;
+  padding: 1rem 0;
 }
 
 a {
   text-decoration: none;
   color: rgb(182, 30, 106);
 }
-
 a:hover {
   color: hotpink;
 }
-
-.products {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  
-}
-
-.products li {
-  list-style-type: none;
+ul{
   padding: 0;
-  flex: 0 1 34rem;
-  margin: 1rem;
-  height: 50rem;
-  border: .1rem #13111152 solid;
-  background-color: rgb(255, 255, 255);
-  
+  margin: 0;
+  list-style-type: none;
 }
-
-.product {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+li{
+  margin-top: 1rem;
 }
-
-.product-name {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-}
-
-.product-type {
-  font-size: 1rem;
-  color: grey;
-  text-align: center;
-}
-
-.product-price {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  background-color: rgb(224, 148, 180);
-}
-
-.product-image {
-  text-align: center;
-  padding-top: 2rem;
-}
-
-.product-image img {
-  max-width: 34rem;
-  max-height: 34rem;
-  min-width: 20rem;
-  min-height: 34rem;
-}
-
-.product-rating {
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.brand button {
-  font-size: 3rem;
-  padding: .5rem;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-.brand img {
-  height: 4rem;
-}
-
-.sidebar {
-  position: fixed;
-  transition: all .8s;
-  transform: translateX(-30rem);
-  width: 30rem;
-  background-color: rgb(236, 193, 236);
-  height: 100%;
-}
-
-.sidebar.open {
-  transform: translateX(0);
-}
-
-.sidebar-close-button {
-  border-radius: 20%;
-  border: .1rem black solid;
-  color: white;
-  width: 3rem;
-  height: 3rem;
-  font-size: 2rem;
-  cursor: pointer;
-  position: absolute;
-  right: .5rem;
-  top: 1rem;
-  background-color: rgb(182, 30, 106);
-}
-.back-to-result {
-padding: 1rem;
-}
-
-.details {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
+button{
   padding: 1rem;
+  border-radius: 0.5rem;
+  border: 0.2rem grey solid;
+  font-size: 1.6rem;
+  font-family: Helvetica, Arial, sans-serif; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(184, 56, 120);
+  cursor: pointer;
+  color: white
 }
-
-.details-image {
-  flex: 2 1 60rem;
-}
-.details-image img{
-  max-width: 60rem;
+button.block{
   width: 100%;
 }
-.details-info {
-  flex: 1 1 30rem;
+button:hover{
+  border: 0.2rem black solid;
 }
-.details-action {
-  flex: 1 1 30rem;
-}
-.details-info ul, .details-action ul{
-  list-style-type: none;
-  padding: 0;
-}
-.details-info li, .details-action li{
-  margin-bottom: 1rem;
-}
-.details-action{
-  border: .1rem rgb(182, 30, 106) solid;
-  border-radius: 0.5rem;
-  background-color: rgb(255, 190, 222);
+/* Header */
+header a {
+  color: #ffffff;
   padding: 1rem;
-  text-align: center;
 }
-.details-action ul li:last-child{
+a.brand {
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: bold;
+}
+.row {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
-.button{
-  padding: 1rem;
-  border: .1rem #808080 solid;
-  cursor: pointer;
-  background-color:rgb(255, 255, 255);
+.row.center {
+  justify-content: center;
+}
+.row.top {
+  align-items: flex-start;
+}
+.col-1{
+  flex: 2 1 30rem;
+  align-items: center;
+  justify-content: center;
+}
+.col-2{
+  flex: 1 1 50rem;
+}
+.col-3{
+  flex: 1 1 10rem;
+}
+/* nuotraukos */
+img {
   border-radius: 0.5rem;
 }
-.button:hover{
-  background-color: rgb(221, 44, 133);
+img.medium {
+  min-width: 30rem;
+ min-height: 30rem;
+ max-width: 30rem;
+ max-height: 30rem;
+  width: 100%;
+}
+img.large{
+  width: 100%;
+}
+.badge{
+  background-color: rgb(255, 9, 214);
+  color: rgb(255, 255, 255);
+  border-radius: 20%;
+  padding: 0.2rem 0.7rem;
+  font-size: 1.4rem;
+  margin-left: 0.2rem;
+}
+img.small{
+  max-width: 10rem;
+  width: 100%;
+}
+.min-30{
+  min-width: 30rem;
+}
+
+/* produkto kortelė */
+.card {
+  border: 0.1rem #c0c0c0 solid;
+  background-color: #f8f8f8;
+  border-radius: 0.5rem;
+  margin: 1rem;
+}
+.card-body {
+  padding: 1rem; 
+   background-color: rgb(235, 217, 217);
+}
+.card-body > * {
+  margin-bottom: 0.5rem;
+
+}
+.price {
+  font-size: 2rem;
+}
+/* įvertinimas */
+.rating span {
+  color: #f1aa38;
+  margin: 0.1rem;
+}
+.rating span:last-child{
+  color: rgb(182, 30, 106);
+}
+/* ispejimai */
+.success{
+  color: rgb(18, 149, 18);
+}
+.danger{
+  color: red;
+}
+.alert{
+  padding: 1rem;
+  border: 0.1rem solid transparent;
+  border-radius: 0.5rem;;
+}
+.alert-info{
+  color:pink;
+  background-color: bisque;
+}
+.alert-danger{
+  color:rgb(170, 0, 28);
+  background-color: bisque;
+  position: fixed;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -20%);
+}
+.loading-center{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
 }
