@@ -1,7 +1,8 @@
 html {
   font-size: 62.5%; /* 16px x 62.5 = 10px = 1rem */
   box-sizing: border-box;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);  
+ 
 }
 body {
   margin: 0;
@@ -10,9 +11,11 @@ body {
   font-family: Helvetica, Arial, sans-serif; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 #root{
   height: 100%;
+ 
 }
 
 /* Layout */
@@ -32,12 +35,12 @@ header {
 }
 main {
   grid-area: main;
-  padding: 1rem;
+  padding: 1rem; 
+   padding: 0;
 }
 footer {
   grid-area: footer;
-  background-color: rgb(221, 197, 197);
-  color: rgb(129, 27, 27);
+  background-color: rgb(182, 30, 106);color: white;
 }
 /* Common */
 h1 {
@@ -66,22 +69,24 @@ li{
 }
 button{
   padding: 1rem;
-  border-radius: 0.5rem;
-  border: 0.2rem grey solid;
-  font-size: 1.6rem;
-  font-family: Helvetica, Arial, sans-serif; 
+   font-family: Helvetica, Arial, sans-serif; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(184, 56, 120);
   cursor: pointer;
-  color: white
+  background-color: rgba(114, 14, 117, 0.308);
+  color: rgb(255, 255, 255);
+  border: 2px solid rgba(129, 12, 84, 0.644);
+  transition: all .1s ease-in-out;
+  font-weight: bold;
+  outline-style: none;
 }
 button.block{
   width: 100%;
 }
 button:hover{
-  border: 0.2rem black solid;
+  transform: scale(1.04);
 }
+
 /* Header */
 header a {
   color: #ffffff;
@@ -115,6 +120,9 @@ a.brand {
 .col-3{
   flex: 1 1 10rem;
 }
+.col-4{
+  flex: 1 1 60rem;
+}
 /* nuotraukos */
 img {
   border-radius: 0.5rem;
@@ -127,7 +135,7 @@ img.medium {
   width: 100%;
 }
 img.large{
-  width: 100%;
+  width: 80%;
 }
 .badge{
   background-color: rgb(255, 9, 214);
@@ -201,4 +209,116 @@ img.small{
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
+}
+
+/* Registracijos&prisijungimo screenai */
+
+#a{
+ margin: 0px!important;
+  padding: 0px!important;
+  text-align: center;
+  background: linear-gradient(90deg, #3c033e 0%, #c93051 100%);
+  width: 100%;
+  height: 100%;
+  
+}
+.form{
+  max-width: 40rem;
+  min-height: 47rem;
+  margin: 0 auto;
+  border-style: solid;
+  border-color: rgba(129, 12, 84, 0.644);
+  border-radius: 3%;
+  border-width: 5px;
+  box-shadow: 0 0  3px rgba(201, 46, 141, 0.644);
+  color: white;
+
+}
+
+.form > div{
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+
+}
+.form label{
+  margin: 1rem 0 ;
+  display: block;
+}
+div .midle{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+ 
+}
+input[type="password"], input[type="email"], input[type="text"]
+{
+    background: transparent;
+    padding-top: 2rem;
+}
+input{
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: rgba(129, 12, 84, 0.644);
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: rgb(255, 255, 255);
+}
+#password, #email, #nick, #confirmPassword{
+  color: white;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+::placeholder{
+  color: white;
+  opacity: 0.5;
+}
+#formText{
+  font-size: 15px;
+  color: #3c033e;
+}
+.col-4 .medium{
+  max-width: 50rem;
+  max-height: 50rem;
+   width: 100%;
+}
+.dropdown{
+  display: inline-block;
+  position: relative;
+}
+.dropdown-content{
+  position: absolute;
+  display: none;
+  right: 0;
+  min-width:12rem ;
+  padding: 1rem;
+  z-index:1;
+  background-color: rgb(182, 30, 106);
+  margin: 0;
+  margin-top: 0.4rem;
+  border-radius: 0.5rem;
+}
+.dropdown:hover .dropdown-content{
+display: block;
+}
+.checkout-steps > div{
+  border-top: 1rem rgb(206, 201, 201) solid;
+  color: rgb(189, 190, 181);
+  flex: 1;
+  padding: 0.5rem;
+}
+.checkout-steps > div.active{
+  border-top-color: rgb(255, 190, 10);
+  color: rgb(248, 182, 0);
+  font-weight: bold;
 }

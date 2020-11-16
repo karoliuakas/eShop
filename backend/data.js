@@ -3,13 +3,25 @@ const data = {
     users:[
         {
             nick:'Karolis',
-            pw: bcrypt.hashSync('blablka',8),
+            password: bcrypt.hashSync('blablka',8),
             email:'karolis@gmail.com',
             admin:true,
         },
         {
+            nick: 'KAROLIS',
+            email: 'admin@example.com',
+            password: bcrypt.hashSync('1234', 8),
+            admin: true,
+          },
+        {
+            nick:'Karolis',
+            password: bcrypt.hashSync('karolis',8),
+            email:'karolisas@gmail.com',
+            admin:true,
+        },
+        {
             nick:'Skaisteesasdsadas',
-            pw: bcrypt.hashSync('ulalal',8),
+            password: bcrypt.hashSync('ulalal',8),
             email:'skaiste@gmail.com',
             admin:false,
         },
@@ -17,7 +29,7 @@ const data = {
     ],
 products: [
     {
-        name: "Saldainių medis su mdxzvcasfafasfasfasfaxvxiglės",
+        name: "Saldainių medis su mdxvxiglės",
         category: "medžiai",
         image: '/images/p1.jpg',
         price: 30,
