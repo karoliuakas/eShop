@@ -1,0 +1,24 @@
+.formShipping{
+    max-width: 40rem;
+    min-height: 47rem;
+    margin: 0 auto;
+    border-style: solid;
+    border-color: rgba(129, 12, 84, 0.644);
+    border-radius: 3%;
+    border-width: 5px;
+    box-shadow: 0 0  3px rgba(201, 46, 141, 0.644);
+    color: rgb(0, 0, 0);
+    background-color: rgba(240, 198, 223, 0.644);
+    text-align: center;
+  
+  }
+  
+  .formShipping > div{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+  
+  }
+  .formShipping label{
+    margin: 1rem 0 ;
+  }

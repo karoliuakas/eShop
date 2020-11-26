@@ -1,24 +1,34 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from '../actions/cartActions.js';
 import CheckoutSteps from '../components/Checkout.js'
+import '../styles/shippingAddress.css';
 
-export default function ShippingAddressScreen() {
-    const [fullName, setFullName] = useState('');
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [postCode, setPostCode] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+export default function ShippingAddressScreen(props) {
+    const userSignin = useSelector(state => state.userSignin);
+    const {userInfo} = userSignin;
+    const cart = useSelector(state => state.cart);
+    const {shippingAddress} = cart;
+    if(!userInfo){
+        props.history.push('/signin')
+    }
+    const [fullName, setFullName] = useState(shippingAddress.fullName);
+    const [address, setAddress] = useState(shippingAddress.address);
+    const [city, setCity] = useState(shippingAddress.city);
+    const [postCode, setPostCode] = useState(shippingAddress.postCode);
+    const [phoneNumber, setPhoneNumber] = useState(shippingAddress.phoneNumber);
     const dispatch = useDispatch();
     const submitHandler = (e) =>{
         e.preventDefault();
         dispatch(saveShippingAddress({fullName, address,city, postCode, phoneNumber}));
         //dispatch save shipping addres action
-    };
+     props.history.push('/payment');
+    }; 
+   
     return (
         <div>
             <CheckoutSteps step1 step2></CheckoutSteps>
-            <form className="form" onSubmit={submitHandler}>
+            <form className="formShipping" onSubmit={submitHandler}>
                 <div>
                     <h1>Užsakymo informacija</h1>
                 </div>
