@@ -196,12 +196,16 @@ html {
     background-color: bisque;
   }
   .alert-danger{
-    color:rgb(170, 0, 28);
-    background-color: bisque;
-    position: fixed;
+    color:rgb(255, 0, 43);
+    background-color: #EBD9D9;
+   /* position: fixed;
     left: 50%;
-    /* bring your own prefixes */
-    transform: translate(-50%, -20%);
+    transform: translate(-50%, -20%); */
+  }
+  .alert-success{
+    color:rgb(0, 160, 13);
+    background-color: #EBD9D9;
+
   }
   .loading-center{
     position: fixed;

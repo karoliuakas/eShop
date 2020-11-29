@@ -1,3 +1,4 @@
+import e from 'express';
 import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import Order from '../models/orderModel.js';
@@ -29,4 +30,14 @@ orderRouter.post('/', isAuth, expressAsyncHandler(async(req, res)=> {
         });
     }
 }));
+
+orderRouter.get('/:id', isAuth, expressAsyncHandler(async(req, res)=>{
+    const order = await Order.findById(req.params.id);
+    if(order){
+        res.send(order);
+    }
+    else{
+        res.status(404).send({message:'Užsakymas nerastas'})
+    }
+}))
 export default orderRouter;

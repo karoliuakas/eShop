@@ -40,8 +40,8 @@ if(success){
                             <div className="card card-body">
                                 <h2>Siuntimas</h2>
                                 <p>
-                                    <strong>Vardas:</strong>{cart.shippingAddress.fullName} <br />
-                                    <strong>Adresas:</strong>{cart.shippingAddress.address}, {cart.shippingAddress.city}, {cart.shippingAddress.postCode}
+                                    <strong>Asmuo: </strong>{cart.shippingAddress.fullName} <br />
+                                    <strong>Adresas: </strong>{cart.shippingAddress.address}, {cart.shippingAddress.city}, {cart.shippingAddress.postCode}
                                 </p>
                             </div>
                         </li>
@@ -103,6 +103,7 @@ if(success){
                                     <div>{cart.shippingPrice.toFixed(2)}€</div>
                                 </div>
                             </li>
+                            <hr></hr>
                             <li>
                                 <div className="row">
                                     <div><strong>Bendra suma</strong></div>

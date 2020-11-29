@@ -96,7 +96,7 @@ export default function ProductScreen(props) {
                                                         </div>
                                                     </li>
                                                     <li>
-                                                        <button onClick={addToCartHandler} className="primary block">Pridėti į krepšelį</button>
+                                                        <button onClick={addToCartHandler} className="primary block">Dėti į krepšelį</button>
                                                     </li>
                                                 </>
                                             )
