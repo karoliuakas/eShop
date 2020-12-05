@@ -33,6 +33,7 @@ if(success){
     return (
         <div>
             <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
+            <Link to="/payment">Grįžti į mokėjimo parinktį</Link>
             <div className="row top">
                 <div className="col-2">
                     <ul>
@@ -93,13 +94,15 @@ if(success){
                             </li>
                             <li>
                                 <div className="row">
-                                    <div>Prekės + PVM 21%</div>
+                                    <div>Prekės + PVM 21%:/</div>
                                 <div>{cart.itemsPriceWihoutTax.toFixed(2)} + {cart.taxPrice.toFixed(2)}€</div>
                                 </div>
                             </li>
                             <li>
                                 <div className="row">
-                                    <div>Siuntimas</div>
+                                {cart.itemsPrice>=30?<div>Siuntimas:</div>:
+                                <div>Siuntimas (Iki nemokamo siuntimo liko: <strong>{(30-cart.itemsPrice).toFixed(2)}€)</strong></div>
+                                }
                                     <div>{cart.shippingPrice.toFixed(2)}€</div>
                                 </div>
                             </li>

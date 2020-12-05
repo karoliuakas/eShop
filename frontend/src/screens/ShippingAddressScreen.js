@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { saveShippingAddress } from '../actions/cartActions.js';
 import CheckoutSteps from '../components/Checkout.js'
 import '../styles/shippingAddress.css';
@@ -28,6 +29,8 @@ export default function ShippingAddressScreen(props) {
     return (
         <div>
             <CheckoutSteps step1 step2></CheckoutSteps>
+            
+            <Link to="/cart">Grįžti į krepšelį</Link>
             <form className="formShipping" onSubmit={submitHandler}>
                 <div>
                     <h1>Užsakymo informacija</h1>

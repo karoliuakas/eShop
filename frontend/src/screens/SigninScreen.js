@@ -24,7 +24,7 @@ export default function SigninScreen(props) {
         {
             props.history.push(redirect);
         }
-    },[userInfo]);
+    },[userInfo, props.history, redirect]);
     return (
         <div className="row" id="a">
             <div className="col-4">

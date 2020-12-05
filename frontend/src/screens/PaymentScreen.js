@@ -3,6 +3,7 @@ import CheckoutSteps from '../components/Checkout.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { savePaymentMethod } from '../actions/cartActions';
 import '../styles/shippingAddress.css';
+import { Link } from 'react-router-dom';
 
 export default function PaymentScreen(props) {
     const cart = useSelector((state) => state.cart);
@@ -21,6 +22,7 @@ export default function PaymentScreen(props) {
     return (
         <div>
             <CheckoutSteps step1 step2 step3></CheckoutSteps>
+            <Link to="/shipping">Grįžti į naudotojo informaciją</Link>
             <form className="formShipping" onSubmit={submitHandler}>
                 <div>
                     <h1>Apmokėjimas</h1>

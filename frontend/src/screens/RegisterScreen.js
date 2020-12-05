@@ -32,23 +32,23 @@ export default function RegisterScreen(props) {
         if (userInfo) {
             props.history.push(redirect);
         }
-    }, [userInfo]);
+    }, [userInfo, props.history,redirect ]);
     return (
         <div className="row" id="a">
             <div className="col-4">
-                <img className="medium" src="/images/loginlogo.png"></img>
+                <img alt="Prisijungimas" className="medium" src="/images/loginlogo.png"></img>
             </div>
             <div className="col-1" id="login">
                 <form className="form" onSubmit={submitHandler}>
                     <div className="midle">
-                        <img className="small" src="/images/loginlogoicon.png"></img>
+                        <img alt="Prisijungimas" className="small" src="/images/loginlogoicon.png"></img>
                         <h1>Vartotojo registracija</h1>
                     </div>
                     {
                         loading && <LoadingBox></LoadingBox>
                     }
                     {
-                    error && <MessageBox variant="danger">{error}</MessageBox>
+                    error && <MessageBox variant="danger">Toks vartotojas jau egzistuoja</MessageBox>
                     }
                     <div>
                         <input type="text" id="nick" placeholder="Vardas Pavardė" required onChange={(e) => setNick(e.target.value)}>

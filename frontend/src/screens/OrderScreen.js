@@ -1,20 +1,46 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { detailsOrder } from '../actions/orderActions.js';
+import { detailsOrder, payOrder } from '../actions/orderActions.js';
 import LoadingBox from '../components/LoadingBox.js';
 import MessageBox from '../components/MessageBox.js';
+import { ORDER_PAY_RESET } from '../constants/orderConstants.js';
 
 export default function OrderScreen(props) {
     const orderId = props.match.params.id;
     const orderDetails = useSelector((state) => state.orderDetails);
     const { order, loading, error } = orderDetails;
+    const orderPay = useSelector((state) => state.orderPay);
+    const {success: successPay } = orderPay;
     const dispatch = useDispatch();
+    const [sdkReady, setSdkReady] = useState(false);
+
 
     useEffect(() => {
-        dispatch(detailsOrder(orderId));
+        const addPayseraScript = async () => {
+            setSdkReady(true);
+        };
+        if (!order || successPay || (order && order._id !== orderId)) {
+            dispatch({ type: ORDER_PAY_RESET });
+            dispatch(detailsOrder(orderId));
+        } else {
+            if (!order.isPaid) {
+                if (!window.paysera) {
+                    addPayseraScript();
+                } else {
+                    setSdkReady(true);
+                }
+            }
+        }
 
-    }, [dispatch, orderId]);
+
+    }, [dispatch, order, orderId, sdkReady, successPay]);
+    const orderHandler = (paymentResult) => {
+
+        dispatch(payOrder(order, paymentResult));
+        window.open("https://www.paysera.com/pay/?data=cHJvamVjdGlkPTE5MzYyOCZvcmRlcmlkPTAmYW1vdW50PTEyMzAwJmN1cnJlbmN5PUVVUiZhY2NlcHR1cmw9aHR0cCUzQSUyRiUyRmxvY2FsaG9zdCUzQTMwMDAmY2FuY2VsdXJsPWh0dHAlM0ElMkYlMkZsb2NhbGhvc3QlM0EzMDAwJmNhbGxiYWNrdXJsPSZ0ZXN0PTEmdmVyc2lvbj0xLjY=&sign=726ac9d378e8b999fb265f282cb624b5");
+    };
+
     return loading ? (<LoadingBox></LoadingBox>) :
         error ? (<MessageBox variant="danger">TOKIO UŽSAKYMO NĖRA</MessageBox>) :
             (
@@ -30,8 +56,8 @@ export default function OrderScreen(props) {
                                             <strong>Asmuo: </strong>{order.shippingAddress.fullName} <br />
                                             <strong>Adresas: </strong>{order.shippingAddress.address}, {order.shippingAddress.city}, {order.shippingAddress.postCode}
                                         </p>
-                                        {order.isDelivered ? <MessageBox variant="success"><strong>Prekė išsiųsta </strong>{order.deliveredAt}</MessageBox>:
-                                        <MessageBox variant="danger"><strong>Prekė dar neišsiųsta</strong></MessageBox>
+                                        {order.isDelivered ? <MessageBox variant="success"><strong>Prekė išsiųsta </strong>{order.deliveredAt}</MessageBox> :
+                                            <MessageBox variant="danger"><strong>Prekė dar neišsiųsta</strong></MessageBox>
                                         }
                                     </div>
                                 </li>
@@ -41,8 +67,8 @@ export default function OrderScreen(props) {
                                         <p>
                                             <strong>Apmokėjimo būdas:</strong>{order.paymentMethod}
                                         </p>
-                                        {order.isPaid ? <MessageBox variant="success"><strong> Apmokėta </strong>{order.paidAt}</MessageBox>:
-                                        <MessageBox variant="danger"><strong>Nesumokėta</strong></MessageBox>
+                                        {order.isPaid ? <MessageBox variant="success"><strong> Apmokėta </strong>{order.paidAt}</MessageBox> :
+                                            <MessageBox variant="danger"><strong>Nesumokėta</strong></MessageBox>
                                         }
                                     </div>
                                 </li>
@@ -103,6 +129,22 @@ export default function OrderScreen(props) {
                                             <div><strong>{order.totalPrice.toFixed(2)}€</strong></div>
                                         </div>
                                     </li>
+                                    <li>
+
+                                    </li>
+                                    {
+                                        !order.isPaid && (
+                                            <li>
+                                                {!sdkReady ? (<LoadingBox></LoadingBox>) :
+                                                    (
+                                                            <button type="button" onClick={orderHandler} className="primary block">
+                                                                Mokėti
+                                                        </button>
+                                                       
+                                                    )}
+                                            </li>
+                                        )
+                                    }
 
                                 </ul>
                             </div>

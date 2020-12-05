@@ -40,6 +40,28 @@ products: [
         description: "skani dovana visiems"
     },
     {
+        name: "Saldainių medis su chaha",
+        category: "medžiai",
+        image: '/images/p1.jpg',
+        price: 30,
+        type: 'Saldainių medis',
+        rating: 4.1,
+        numReviews: 52,
+        countInStock: 1000,
+        description: "skani dovana visiems"
+    },
+    {
+        name: "Saldainių medis su heheh",
+        category: "medžiai",
+        image: '/images/p1.jpg',
+        price: 30,
+        type: 'Saldainių medis',
+        rating: 4.1,
+        numReviews: 52,
+        countInStock: 1000,
+        description: "skani dovana visiems"
+    },
+    {
         name: "Saldainių medis su mdxzvcxfdvxiglės",
         category: "medžiai",
         image: '/images/p1.jpg',
