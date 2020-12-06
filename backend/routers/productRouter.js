@@ -27,7 +27,7 @@ productRouter.get('/:id', expressAsyncHandler(async(req, res)=>{
 
 productRouter.post('/', isAuth, isAdmin, expressAsyncHandler(async(req, res)=>{
     const product = new Product({
-        name:'Naujas medeli1',
+        name:'Naujas medeli1'+Date.now(),
         image:'/images/p2.png',
         price: 100,
         category: 'Kategorija',
