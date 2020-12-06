@@ -27,17 +27,35 @@ productRouter.get('/:id', expressAsyncHandler(async(req, res)=>{
 
 productRouter.post('/', isAuth, isAdmin, expressAsyncHandler(async(req, res)=>{
     const product = new Product({
-        name:'Naujas medelis',
+        name:'Naujas medeli1',
         image:'/images/p2.png',
-        price: 0,
+        price: 100,
         category: 'Kategorija',
         type: 'tipas',
-        countInStock:0,
-        rating:0,
-        numReviews:0,
+        countInStock:100,
+        rating:2,
+        numReviews:100,
         description:'Aprašymas',
     });
     const createdProduct = await product.save();
     res.send({message:'Prekė sukurta', product: createdProduct})
-}))
+}));
+
+productRouter.put('/:id', isAuth, isAdmin, expressAsyncHandler(async(req, res)=>{
+    const productId = req.params.id;
+    const product = await Product.findById(productId);
+    if(product){
+        product.name = req.body.name;
+        product.category = req.body.category;
+        product.image = req.body.image;
+        product.price = req.body.price;
+        product.type = req.body.type;
+        product.countInStock = req.body.countInStock;
+        product.description = req.body.description;
+        const updatedProduct = await product.save();
+        res.send({message:'Prekė atnaujinta', product: updatedProduct});
+    }else{
+        res.status(404).send({message: 'Prekė nerasta'});
+    }
+}));
 export default productRouter;

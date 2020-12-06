@@ -6,10 +6,13 @@ import MessageBox from '../components/MessageBox';
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
 
 export default function ProductListScreen(props) {
+
     const productList = useSelector((state) => state.productList);
     const { loading, error, products } = productList;
+
     const productCreate = useSelector(state=> state.productCreate);
     const {loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct,}= productCreate;
+
     const dispatch = useDispatch();
     useEffect(() => {
         if(successCreate){
@@ -43,7 +46,7 @@ export default function ProductListScreen(props) {
                                 <th>PAVADINIMAS</th>
                                 <th>KAINA</th>
                                 <th>KATEGORIJA</th>
-                                <th>TIPAS</th>
+                                <th>KIEKIS</th>
                                 <th>VEIKSMAI</th>
                             </tr>
                         </thead>
@@ -54,7 +57,7 @@ export default function ProductListScreen(props) {
                                     <td>{product.name}</td>
                                     <td>{product.price}</td>
                                     <td>{product.category}</td>
-                                    <td>{product.type}</td>
+                                    <td>{product.countInStock}</td>
                                     <td>
                                         <button type="button" className="small" onClick={() => props.history.push(`/product/${product._id}/edit`)}>Keisti</button>
                                         <button type="button" className="small" onClick={() => deleteHandler(product)}>Ištrinti</button>
