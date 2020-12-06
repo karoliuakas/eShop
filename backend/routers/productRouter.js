@@ -32,9 +32,9 @@ productRouter.post('/', isAuth, isAdmin, expressAsyncHandler(async(req, res)=>{
         price: 100,
         category: 'Kategorija',
         type: 'tipas',
-        countInStock:100,
-        rating:2,
-        numReviews:100,
+        countInStock:12,
+        rating:0,
+        numReviews:0,
         description:'Aprašymas',
     });
     const createdProduct = await product.save();

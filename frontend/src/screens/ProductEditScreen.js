@@ -97,7 +97,7 @@ export default function ProductEditScreen(props) {
                             </div>
                             <div>
                                 <label htmlFor="imageFile">Prekės paveikslėlis</label>
-                                <input type="file" if="imageFile" label="Pasirinkite paveikslėlį" onChange={uploadFileHandler}></input>
+                                <input type="file" id="imageFile" label="Pasirinkite paveikslėlį" onChange={uploadFileHandler}></input>
                                 {loadingUpload && <LoadingBox></LoadingBox>}
                                 {errorUpload && <MessageBox variant="danger">{errorUpload}</MessageBox>}
                             </div>
@@ -115,7 +115,7 @@ export default function ProductEditScreen(props) {
                             </div>
                             <div>
                                 <label htmlFor="description">Aprašymas</label>
-                                <textarea id="description" type="text" placeholder="Įveskite aprašymą" value={description} onChange={(e) => setDescription(e.target.value)} rows="4"></textarea>
+                                <textarea id="description" type="text" placeholder="Įveskite aprašymą" value={description} onChange={(e) => setDescription(e.target.value)} rows="6"></textarea>
                             </div>
                             <div>
                                 <label></label>

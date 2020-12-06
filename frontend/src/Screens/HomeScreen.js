@@ -36,5 +36,6 @@ const {loading, error, products} = productList;
             }
         </div>
 
-   </Fade>  );
+   </Fade> 
+ );
 }

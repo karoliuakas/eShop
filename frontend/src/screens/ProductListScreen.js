@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
 import { createProduct, deleteProduct, listProducts } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
@@ -68,7 +69,7 @@ export default function ProductListScreen(props) {
                             {products.map((product) => (
                                 <tr key={product._id}>
                                     <td>{product._id}</td>
-                                    <td>{product.name}</td>
+                                    <td><Link to={`/product/${product._id}`}>{product.name}</Link></td>
                                     <td>{product.price}</td>
                                     <td>{product.category}</td>
                                     <td>{product.countInStock}</td>

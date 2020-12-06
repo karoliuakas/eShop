@@ -296,9 +296,10 @@ html {
   textarea:-webkit-autofill:focus,
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
-  select:-webkit-autofill:focus {
+  select:-webkit-autofill:focus
+   {
     transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: rgb(0, 0, 0);
+    -webkit-text-fill-color: rgb(255, 255, 255);
   }
   #password, #email, #nick, #confirmPassword{
     color: white;
@@ -367,4 +368,26 @@ html {
   }
   .table button{
     margin: 0 0.2rem;
+  }
+  td a, p, li{
+    color: white;
+  } 
+  #name, #type, #category, #price, #countInStock, #image, #imageFile{
+    color: violet;
+    text-align: center;
+  }
+  div label{
+    text-align: center;
+    align-items: center;
+  }
+  #imageFile{
+    text-align: center;
+    margin: auto;
+  }
+  .fullBack
+{
+  background-image:url('/images/coveriukas.png');
+  background-size:cover;
+  width:100%;
+  height:100%;
   }
