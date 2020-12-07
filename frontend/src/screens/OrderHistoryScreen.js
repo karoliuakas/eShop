@@ -46,5 +46,5 @@ error? <MessageBox variant="danger">{error}</MessageBox>:(
     </table>
 )}
         </div>
-    )
+    );
 }
