@@ -50,7 +50,7 @@ export const signout = () => (dispatch) => {
     localStorage.removeItem('userInfo');
     localStorage.removeItem('cartItems');
     localStorage.removeItem('shippingAddress');
-    window.location.reload(false);
+    window.location.href = "/signin";
     dispatch({ type: USER_SIGNOUT });
 };
 

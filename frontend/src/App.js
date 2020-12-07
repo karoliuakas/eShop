@@ -28,6 +28,7 @@ function App() {
     const dispatch = useDispatch();
     const signoutHandler = () => {
         dispatch(signout());
+        
     }
     return (
         <BrowserRouter>
@@ -44,9 +45,6 @@ function App() {
                             <div className="dropdown">
                                 <Link to="#admin">Administruoti{' '} <i className="fa fa-caret-down"></i></Link>
                                 <ul className="dropdown-content">
-                                    <li>
-                                        <Link to="/dashboard">Suvestinė</Link>
-                                    </li>
                                     <li>
                                         <Link to="/productlist">Produktai</Link>
                                     </li>

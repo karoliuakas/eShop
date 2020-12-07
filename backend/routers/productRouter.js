@@ -67,5 +67,5 @@ productRouter.delete('/:id', isAuth, isAdmin, expressAsyncHandler(async(req, res
        }else{
            res.status(404).send({message: 'Prekė nerasta'});
        }
-}))
+}));
 export default productRouter;

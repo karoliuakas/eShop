@@ -63,6 +63,27 @@ orderRouter.put('/:id/pay', isAuth, expressAsyncHandler(async(req, res)=>{
         res.status(404).send({message: 'Užsakymas nerastas'});
     }
 }));
+orderRouter.delete('/:id', isAuth, isAdmin, expressAsyncHandler(async(req, res)=>{
+    const order = await Order.findById(req.params.id);
+    if(order){
+        const deleteOrder = await order.remove();
+        res.send({message: 'Užsakymas pašalintas', order: deleteOrder});
+       }else{
+           res.status(404).send({message: 'Užsakymas nerastas'});
+       }
+}));
+
+orderRouter.put('/:id/deliver', isAuth, expressAsyncHandler(async(req, res)=>{
+    const order = await Order.findById(req.params.id);
+    if(order){
+        order.isDelivered = true;
+        order.deliveredAt = Date.now();
+        const updatedOrder = await order.save();
+        res.send({message:'Užsakymas išsiųstas', order:updatedOrder});
+    }else{
+        res.status(404).send({message: 'Užsakymas nerastas'});
+    }
+}));
 
 
 export default orderRouter;

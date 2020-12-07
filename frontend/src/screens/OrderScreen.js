@@ -1,27 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { detailsOrder, payOrder } from '../actions/orderActions.js';
+import { deliverOrder, detailsOrder, payOrder } from '../actions/orderActions.js';
 import LoadingBox from '../components/LoadingBox.js';
 import MessageBox from '../components/MessageBox.js';
-import { ORDER_PAY_RESET } from '../constants/orderConstants.js';
+import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../constants/orderConstants.js';
 
 export default function OrderScreen(props) {
     const orderId = props.match.params.id;
+
     const orderDetails = useSelector((state) => state.orderDetails);
     const { order, loading, error } = orderDetails;
+
     const orderPay = useSelector((state) => state.orderPay);
     const {success: successPay } = orderPay;
+
+    const orderDeliver = useSelector((state) => state.orderDeliver);
+    const {success: successDeliver } = orderDeliver;
+
     const dispatch = useDispatch();
     const [sdkReady, setSdkReady] = useState(false);
 
+    const userSignin = useSelector((state)=> state.userSignin);
+    const {userInfo} = userSignin;
 
     useEffect(() => {
         const addPayseraScript = async () => {
             setSdkReady(true);
         };
-        if (!order || successPay || (order && order._id !== orderId)) {
+        if (!order || successPay || successDeliver || (order && order._id !== orderId)) {
             dispatch({ type: ORDER_PAY_RESET });
+            dispatch({ type: ORDER_DELIVER_RESET});
             dispatch(detailsOrder(orderId));
         } else {
             if (!order.isPaid) {
@@ -34,12 +43,16 @@ export default function OrderScreen(props) {
         }
 
 
-    }, [dispatch, order, orderId, sdkReady, successPay]);
+    }, [dispatch, order, orderId, sdkReady, successPay, successDeliver]);
     const orderHandler = (paymentResult) => {
 
         dispatch(payOrder(order, paymentResult));
         window.open("https://www.paysera.com/pay/?data=cHJvamVjdGlkPTE5MzYyOCZvcmRlcmlkPTAmYW1vdW50PTEyMzAwJmN1cnJlbmN5PUVVUiZhY2NlcHR1cmw9aHR0cCUzQSUyRiUyRmxvY2FsaG9zdCUzQTMwMDAmY2FuY2VsdXJsPWh0dHAlM0ElMkYlMkZsb2NhbGhvc3QlM0EzMDAwJmNhbGxiYWNrdXJsPSZ0ZXN0PTEmdmVyc2lvbj0xLjY=&sign=726ac9d378e8b999fb265f282cb624b5");
     };
+
+    const deliverHandler = () =>{
+      dispatch(deliverOrder(order._id));  
+    }   
 
     return loading ? (<LoadingBox></LoadingBox>) :
         error ? (<MessageBox variant="danger">TOKIO UŽSAKYMO NĖRA</MessageBox>) :
@@ -145,7 +158,13 @@ export default function OrderScreen(props) {
                                             </li>
                                         )
                                     }
-
+{userInfo.admin && order.isPaid && !order.isDelivered &&(
+    <li>
+        <button type="button" className="primary block" onClick={deliverHandler}>
+            Išsiųsti užsakymą
+        </button>
+    </li>
+)}
                                 </ul>
                             </div>
                         </div>
