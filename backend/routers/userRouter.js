@@ -45,21 +45,21 @@ userRouter.post('/register', expressAsyncHandler(async (req, res) => {
     })
 }));
 
-userRouter.get('/:id', expressAsyncHandler(async(req, res)=>{
+userRouter.get('/:id', expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id);
-    if(user){
+    if (user) {
         res.send(user);
-    }else{
-        res.status(404).send({message: 'Naudotojas nerastas'});
+    } else {
+        res.status(404).send({ message: 'Naudotojas nerastas' });
     }
 }));
 
-userRouter.put('/profile', isAuth, expressAsyncHandler(async(req, res)=>{
+userRouter.put('/profile', isAuth, expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id);
-    if(user){
+    if (user) {
         user.nick = req.body.nick || user.nick;
         user.email = req.body.email || user.email;
-        if(req.body.password){
+        if (req.body.password) {
             user.password = bcrypt.hashSync(req.body.password, 8);
         }
         const updatedUser = await user.save();
@@ -73,8 +73,33 @@ userRouter.put('/profile', isAuth, expressAsyncHandler(async(req, res)=>{
     }
 }));
 
-userRouter.get('/', isAuth, isAdmin, expressAsyncHandler(async(req, res)=>{
+userRouter.get('/', isAuth, isAdmin, expressAsyncHandler(async (req, res) => {
     const users = await User.find({});
     res.send(users);
-}))
-export default userRouter
+}));
+
+userRouter.delete('/:id', isAuth, isAdmin, expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (user) {
+        const deleteUser = await user.remove();
+        res.send({ message: 'Naudotojas pašalintas', user: deleteUser });
+    } else {
+        res.status(404).send({ message: 'Naudotojas nerastas' });
+    }
+}));
+
+userRouter.put('/:id', isAuth, isAdmin, expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (user) {
+        user.nick = req.body.nick || user.nick;
+        user.email = req.body.email || user.email;
+        user.admin = req.body.admin;
+        const updatedUser = await user.save();
+        res.send({message:'Naudotojas atnaujintas', user: updatedUser});
+    }
+    else {
+        res.status(404).send({ message: 'Naudotojas nerastas' });
+    }
+}));
+
+export default userRouter;
