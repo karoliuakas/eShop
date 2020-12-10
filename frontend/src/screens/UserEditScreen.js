@@ -66,10 +66,14 @@ if(successUpdate){
                                     <div>
                                         <label htmlFor="admin">Ar administratorius</label>
                                         <input id="admin" type="checkbox" checked={admin} onChange={(e) => setAdmin(e.target.checked)}></input>
+                                       
                                     </div>
-                                    <button type="submit" className="primary">
+                                    <div>
+                                         <button type="submit" className="primary">
                                         Atnaujinti
                         </button>
+                                    </div>
+                                   
                                 </>
                             )}
             </form>

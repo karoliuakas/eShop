@@ -6,14 +6,14 @@ import { Link } from 'react-router-dom';
 export default function Product(props) {
     const { product } = props;
     return (
-        <div key={product._id} className="card">
+        <div key={product._id} className="card-mainProduct">
 
             <Link to={`/product/${product._id}`}>
                 <img className="medium"
                     src={product.image}
                     alt={product.name} />
             </Link>
-            <div className="card-body">
+            <div className="card-body-mainProduct">
                 <Link to={`/product/${product._id}`}>
                     <h2 >{product.name}</h2>
                 </Link>

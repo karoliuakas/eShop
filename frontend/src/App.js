@@ -20,11 +20,12 @@ import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
 import UserListScreen from './screens/UserListScreen';
 import userEditScreen from './screens/UserEditScreen';
+import SearchBox from './components/SearchBox';
+import SearchScreen from './screens/SearchScreen';
 
 function App() {
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
-
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
     const dispatch = useDispatch();
@@ -38,6 +39,9 @@ function App() {
                 <header className="row">
                     <div>
                         <Link className="brand" to="/">SALDI-DOVANA.LT</Link>
+                    </div>
+                    <div>
+                        <Route render={({history})=> <SearchBox history={history}></SearchBox>}></Route>
                     </div>
                     <div>
                         <Link to="/cart">Krepšelis{cartItems.length > 0 && (
@@ -94,6 +98,7 @@ function App() {
                     <Route path="/placeorder" component={PlaceOrderScreen} ></Route>
                     <Route path="/order/:id" component={OrderScreen} ></Route>
                     <Route path="/orderhistory" component={OrderHistoryScreen} ></Route>
+                    <Route path="/search/name/:name?" component={SearchScreen} exact ></Route>
                     <PrivateRoute path="/profile" component={ProfileScreen} ></PrivateRoute>
                     <AdminRoute path="/productlist" component={ProductListScreen}></AdminRoute>
                     <AdminRoute path="/orderlist" component={OrderListScreen}></AdminRoute>
