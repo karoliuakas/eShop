@@ -90,4 +90,16 @@ productRouter.post('/:id/reviews', isAuth, expressAsyncHandler(async(req, res)=>
         res.status(404).send({message: 'Prekė nerasta'});
     }
 }));
+
+productRouter.put('/:id/update', isAuth, expressAsyncHandler(async(req, res)=>{
+    const productId = req.params.id;
+    const product = await Product.findById(productId);
+    if(product){
+        product.countInStock = req.body.countInStock;
+        const updatedProductQty = await product.save();
+        res.send({message:'Prekė atnaujinta', product: updatedProductQty});
+    }else{
+        res.status(404).send({message: 'Prekė nerasta'});
+    }
+}));
 export default productRouter;

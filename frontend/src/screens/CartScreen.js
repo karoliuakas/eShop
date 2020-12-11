@@ -16,10 +16,10 @@ export default function CartScreen(props) {
             dispatch(addToCart(productId, qty));
         }
     }, [dispatch, productId, qty]);
-    const removeFromCartHandler = (id) =>{
-dispatch(removeFromCart(id));
+    const removeFromCartHandler = (id) => {
+        dispatch(removeFromCart(id));
     };
-    const checkoutHandler = () =>{
+    const checkoutHandler = () => {
         props.history.push('/signin?redirect=shipping');
     }
     return (
@@ -29,8 +29,8 @@ dispatch(removeFromCart(id));
                 {cartItems.length === 0 ? (<MessageBox>
                     Krepšelis tuščias. <Link to="/">Įsidėkite prekę</Link>
                 </MessageBox>) :
-                    ( 
-                       <ul>
+                    (
+                        <ul>
                             {
                                 cartItems.map((item) => (
                                     <li key={item.product}>
@@ -43,21 +43,21 @@ dispatch(removeFromCart(id));
                                                 <Link to={`/product/${item.product}`}>{item.name}</Link>
                                             </div>
                                             <div>
-                                                <select value={item.qty} onChange={e => dispatch(addToCart(item.product,Number(e.target.value)))}>
-                                                {
-                                                                    [...Array(item.countInStock).keys()].map((x) => (
-                                                                        <option key={x+1} value={x + 1}>
-                                                                            {x + 1}
-                                                                        </option>
-                                                                    ))
-                                                                }
+                                                <select value={item.qty} onChange={e => dispatch(addToCart(item.product, Number(e.target.value)))}>
+                                                    {
+                                                        [...Array(item.countInStock).keys()].map((x) => (
+                                                            <option key={x + 1} value={x + 1}>
+                                                                {x + 1}
+                                                            </option>
+                                                        ))
+                                                    }
                                                 </select>
                                             </div>
                                             <div>
-                                           {item.price} €
+                                                {item.price} €
                                             </div>
                                             <div>
-                                                <button type="button" onClick={()=> removeFromCartHandler(item.product)}>
+                                                <button type="button" onClick={() => removeFromCartHandler(item.product)}>
                                                     Ištrinti
                                                 </button>
                                             </div>
@@ -71,18 +71,18 @@ dispatch(removeFromCart(id));
             </div>
             <div className="col-1">
                 <div className="card card-body">
-<ul>
-    <li>
-        <h2>
-            Iš viso: {cartItems.reduce((a,c)=> a+c.qty, 0)} Prekė(-s) : {cartItems.reduce((a,c)=> a+c.price*c.qty,0)}€
+                    <ul>
+                        <li>
+                            <h2>
+                                Iš viso: {cartItems.reduce((a, c) => a + c.qty, 0)} Prekė(-s) : {cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2)}€
         </h2>
-    </li>
-    <li>
-        <button type="button" onClick={checkoutHandler} className="primary block" disabled={cartItems.length===0}>
-            Tęsti apmokėjimą
+                        </li>
+                        <li>
+                            <button type="button" onClick={checkoutHandler} className="primary block" disabled={cartItems.length === 0}>
+                                Tęsti apmokėjimą
         </button>
-    </li>
-</ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

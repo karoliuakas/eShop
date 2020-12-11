@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { createOrder } from '../actions/orderActions.js';
+import { updateProductQty } from '../actions/productActions.js';
 import CheckoutSteps from '../components/Checkout.js';
 import LoadingBox from '../components/LoadingBox.js';
 import MessageBox from '../components/MessageBox.js';
@@ -12,8 +13,14 @@ export default function PlaceOrderScreen(props) {
     if (!cart.paymentMethod) {
         props.history.push('/payment');
     }
- const orderCreate = useSelector((state) => state.orderCreate);
- const {loading, success, error, order} = orderCreate;
+    
+
+    const productUpdateQty = useSelector((state) => state.productUpdate);
+    const { loading: loadingUpdateQty, error: errorUpdateQty, success: successUpdateQty } = productUpdateQty;
+
+    const orderCreate = useSelector((state) => state.orderCreate);
+    const { loading, success, error, order } = orderCreate;
+
     const toPrice = (num) => Number(num.toFixed(2));
     cart.itemsPrice = toPrice(cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0));
     cart.taxPrice = toPrice(0.21 * cart.itemsPrice);
@@ -21,15 +28,24 @@ export default function PlaceOrderScreen(props) {
     cart.shippingPrice = cart.itemsPrice > 30 ? toPrice(0) : toPrice(3);
     cart.totalPrice = cart.itemsPrice + cart.shippingPrice;
     const dispatch = useDispatch();
-    const placeOrderHandler = () =>{
-        dispatch(createOrder({...cart, orderItems: cart.cartItems}));
+    
+
+    useEffect(() => {
+        if (success) {
+            props.history.push(`/order/${order._id}`);
+            dispatch({ type: ORDER_CREATE_RESET });
+        }
+    }, [dispatch, order, props.history, success]);
+ 
+    
+    const placeOrderHandler = () => {
+        dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
+         cart.cartItems.map((item)=>{
+             const finallyQty = item.countInStock - item.qty;
+            dispatch(updateProductQty({ _id: item.product, countInStock: finallyQty }))
+         });
+       
     };
-    useEffect(()=>{
-if(success){
-    props.history.push(`/order/${order._id}`);
-    dispatch({type: ORDER_CREATE_RESET});
-}
-    }, [dispatch, order, props.history,success]);
     return (
         <div>
             <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
@@ -60,6 +76,7 @@ if(success){
                                 <ul>
                                     {
                                         cart.cartItems.map((item) => (
+                                            
                                             <li key={item.product}>
                                                 <div className="row">
                                                     <div>
@@ -70,9 +87,9 @@ if(success){
                                                         <Link to={`/product/${item.product}`}>{item.name}</Link>
                                                     </div>
 
-                                                    <div>
+                                                    <div >
                                                         {item.qty} x
-                                                        {item.price} € = {item.qty * item.price}€
+                                                        {item.price.toFixed(2)} € = {(item.qty * item.price).toFixed(2)}€
                                                       </div>
 
                                                 </div>
@@ -95,14 +112,14 @@ if(success){
                             <li>
                                 <div className="row">
                                     <div>Prekės + PVM 21%:/</div>
-                                <div>{cart.itemsPriceWihoutTax.toFixed(2)} + {cart.taxPrice.toFixed(2)}€</div>
+                                    <div>{cart.itemsPriceWihoutTax.toFixed(2)} + {cart.taxPrice.toFixed(2)}€</div>
                                 </div>
                             </li>
                             <li>
                                 <div className="row">
-                                {cart.itemsPrice>=30?<div>Siuntimas:</div>:
-                                <div>Siuntimas (Iki nemokamo siuntimo liko: <strong>{(30-cart.itemsPrice).toFixed(2)}€)</strong></div>
-                                }
+                                    {cart.itemsPrice >= 30 ? <div>Siuntimas:</div> :
+                                        <div>Siuntimas (Iki nemokamo siuntimo liko: <strong>{(30 - cart.itemsPrice).toFixed(2)}€)</strong></div>
+                                    }
                                     <div>{cart.shippingPrice.toFixed(2)}€</div>
                                 </div>
                             </li>
@@ -114,7 +131,7 @@ if(success){
                                 </div>
                             </li>
                             <li>
-                                <button type="button" onClick={placeOrderHandler} className="primary block" disabled={cart.cartItems.length ===0}>
+                                <button type="button" onClick={placeOrderHandler} className="primary block" disabled={cart.cartItems.length === 0}>
                                     Pateikti užsakymą
                                 </button>
                             </li>
@@ -122,7 +139,7 @@ if(success){
                                 loading && <LoadingBox></LoadingBox>
                             }
                             {
-                                error&&<MessageBox variant="danger">{error}</MessageBox>
+                                error && <MessageBox variant="danger">{error}</MessageBox>
                             }
                         </ul>
                     </div>

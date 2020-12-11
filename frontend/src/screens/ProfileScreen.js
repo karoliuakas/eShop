@@ -35,8 +35,7 @@ export default function ProfileScreen() {
             alert('Slaptažodžiai nesutampa')
         } else {
             dispatch(updateUserProfile({
-                userId: user._id,
-                nick, email, password
+                userId: user._id, nick, email, password
             }));
         }
     }
