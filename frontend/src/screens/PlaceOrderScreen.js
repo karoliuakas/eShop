@@ -16,7 +16,7 @@ export default function PlaceOrderScreen(props) {
     
 
     const productUpdateQty = useSelector((state) => state.productUpdate);
-    const { loading: loadingUpdateQty, error: errorUpdateQty, success: successUpdateQty } = productUpdateQty;
+    const { loading: loadingUpdateQty, error: errorUpdateQty} = productUpdateQty;
 
     const orderCreate = useSelector((state) => state.orderCreate);
     const { loading, success, error, order } = orderCreate;
@@ -43,6 +43,7 @@ export default function PlaceOrderScreen(props) {
          cart.cartItems.map((item)=>{
              const finallyQty = item.countInStock - item.qty;
             dispatch(updateProductQty({ _id: item.product, countInStock: finallyQty }))
+            return {};
          });
        
     };
@@ -135,6 +136,8 @@ export default function PlaceOrderScreen(props) {
                                     Pateikti užsakymą
                                 </button>
                             </li>
+                            {loadingUpdateQty && <LoadingBox></LoadingBox>}
+                            {errorUpdateQty && <MessageBox variant="danger">{errorUpdateQty}</MessageBox>}
                             {
                                 loading && <LoadingBox></LoadingBox>
                             }
