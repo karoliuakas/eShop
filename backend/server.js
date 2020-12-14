@@ -29,7 +29,7 @@ app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 app.get('/', (req, res)=>{
     res.send('Serveris užsikūrė');
 });
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
     res.status(500).send({message: err.message});
 });
 const port = process.env.PORT || 5000;
