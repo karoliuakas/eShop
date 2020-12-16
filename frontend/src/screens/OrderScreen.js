@@ -69,7 +69,7 @@ export default function OrderScreen(props) {
                                             <strong>Asmuo: </strong>{order.shippingAddress.fullName} <br />
                                             <strong>Adresas: </strong>{order.shippingAddress.address}, {order.shippingAddress.city}, {order.shippingAddress.postCode}
                                         </p>
-                                        {order.isDelivered ? <MessageBox variant="success"><strong>Prekė išsiųsta </strong>{order.deliveredAt}</MessageBox> :
+                                        {order.isDelivered ? <MessageBox variant="success"><strong>Prekė išsiųsta </strong>{order.deliveredAt}</MessageBox> ://).replace("T", ", ")).slice(0,17)
                                             <MessageBox variant="danger"><strong>Prekė dar neišsiųsta</strong></MessageBox>
                                         }
                                     </div>

@@ -19,17 +19,17 @@ export default function ProductScreen(props) {
     const { userInfo } = userSignin;
 
     const productCreateReview = useSelector((state) => state.productCreateReview);
-    const { loading:loadingCreateReview, error:errorCreateReview, success: successCreateReview} = productCreateReview;
+    const { loading: loadingCreateReview, error: errorCreateReview, success: successCreateReview } = productCreateReview;
 
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
 
     useEffect(() => {
-        if(successCreateReview){
+        if (successCreateReview) {
             window.alert('Įvertinimas pateiktas!');
             setRating('');
             setComment('');
-            dispatch({type: PRODUCT_CREATE_REVIEW_RESET});
+            dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
         }
         dispatch(detailsProduct(productId));
     }, [dispatch, productId, successCreateReview]);
@@ -131,21 +131,26 @@ export default function ProductScreen(props) {
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <div className="center">
                                 <h2 id="reviews">Atsiliepimai</h2>
                                 {product.reviews.length === 0 && (<MessageBox>Nėra atsiliepimų</MessageBox>)}
                                 <ul>
                                     {product.reviews.map((review) => (
                                         <li key={review._id}>
+
+                                            <hr></hr>
                                             <strong>{review.name}</strong>
-                                            <Rating rating={review.rating} caption=" "></Rating>
+
                                             <p>
                                                 {review.createdAt.substring(0, 10)}
                                             </p>
+
                                             <p>
                                                 {review.comment}
                                             </p>
+                                            <Rating rating={review.rating} caption=" "></Rating>
                                         </li>
+
                                     ))}
                                     <li>
                                         {userInfo ? (
@@ -174,8 +179,8 @@ export default function ProductScreen(props) {
                                                 </button>
                                                 </div>
                                                 <div>
-                                                {loadingCreateReview && <LoadingBox></LoadingBox>}
-                {errorCreateReview && <MessageBox variant="danger">{errorCreateReview}</MessageBox>}
+                                                    {loadingCreateReview && <LoadingBox></LoadingBox>}
+                                                    {errorCreateReview && <MessageBox variant="danger">{errorCreateReview}</MessageBox>}
                                                 </div>
                                             </form>
                                         ) : (<MessageBox>Prašome <Link to='/signin'>prisijungti</Link>, kad galėtumėte palikti įvertinimą</MessageBox>

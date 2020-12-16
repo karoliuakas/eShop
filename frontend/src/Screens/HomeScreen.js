@@ -21,9 +21,7 @@ const {loading, error, products} = productList;
             {loading ? (<LoadingBox></LoadingBox>) :
                 error ? (<MessageBox variant="danger">{error}</MessageBox>) :
                    (
-                    
                    <div className="row center">
-                       
                         {
                             products.map((product) =>
                                 (
@@ -31,11 +29,9 @@ const {loading, error, products} = productList;
                                 ))
                         }  
                     </div>
-                 
                     )
             }
         </div>
-
    </Fade> 
  );
 }

@@ -1,6 +1,7 @@
 
 import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
+import moment from 'moment';
 import Order from '../models/orderModel.js';
 import { isAdmin, isAuth } from '../utils.js';
 
@@ -50,7 +51,7 @@ orderRouter.put('/:id/pay', isAuth, expressAsyncHandler(async(req, res)=>{
     const order = await Order.findById(req.params.id);
     if(order){
         order.isPaid = true;
-        order.paidAt = Date.now();
+        order.paidAt =moment().format('MMMM Do YYYY, h:mm:ss a');
         order.paymentResult = {id: req.body.id, status: req.body.status, update_time: req.body.update_time, email_address: req.body.email_address,};
         const updatedOrder = await order.save();
         res.send({message:'Užsakymas apmokėtas', order:updatedOrder});
@@ -72,7 +73,7 @@ orderRouter.put('/:id/deliver', isAuth, expressAsyncHandler(async(req, res)=>{
     const order = await Order.findById(req.params.id);
     if(order){
         order.isDelivered = true;
-        order.deliveredAt = Date.now();
+        order.deliveredAt = moment().format('MMMM Do YYYY, h:mm:ss a');
         const updatedOrder = await order.save();
         res.send({message:'Užsakymas išsiųstas', order:updatedOrder});
     }else{
